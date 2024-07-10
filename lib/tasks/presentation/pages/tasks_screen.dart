@@ -9,9 +9,7 @@ import 'package:imake/components/build_text_field.dart';
 import 'package:imake/tasks/presentation/widget/task_item_view.dart';
 import 'package:imake/utils/color_palette.dart';
 import 'package:imake/utils/util.dart';
-
 import '../../../components/widgets.dart';
-import '../../../routes/pages.dart';
 import '../../../utils/font_sizes.dart';
 
 class TasksScreen extends StatefulWidget {
