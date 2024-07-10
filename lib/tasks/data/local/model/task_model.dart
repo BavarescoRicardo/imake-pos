@@ -5,6 +5,7 @@ class TaskModel {
   DateTime? startDateTime;
   DateTime? stopDateTime;
   bool completed;
+  String? detail;
 
   TaskModel({
     required this.id,
@@ -13,6 +14,7 @@ class TaskModel {
     required this.startDateTime,
     required this.stopDateTime,
     this.completed = false,
+    this.detail,
   });
 
   Map<String, dynamic> toJson() {
@@ -23,6 +25,7 @@ class TaskModel {
       'completed': completed,
       'startDateTime': startDateTime?.toIso8601String(),
       'stopDateTime': stopDateTime?.toIso8601String(),
+      'detail': detail,
     };
   }
 
@@ -34,6 +37,7 @@ class TaskModel {
       completed: json['completed'],
       startDateTime: DateTime.parse(json['startDateTime']),
       stopDateTime: DateTime.parse(json['stopDateTime']),
+      detail: json['detail'],
     );
   }
 

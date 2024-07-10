@@ -3,4 +3,6 @@ class Pages {
   static const home = '/home';
   static const createNewTask = '/createNewTask';
   static const updateTask = '/updateNewTask';
+  static const AboutScreen = '/about';
+  static const LoginScreen = '/login';
 }

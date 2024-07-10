@@ -1,7 +1,9 @@
 part of 'tasks_bloc.dart';
 
 @immutable
-sealed class TasksEvent {}
+class TasksEvent {
+  get taskModel => null;
+}
 
 class AddNewTaskEvent extends TasksEvent {
   final TaskModel taskModel;
