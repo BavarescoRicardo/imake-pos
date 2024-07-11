@@ -12,37 +12,38 @@ import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = BlocStateOberver();
+  Bloc.observer = BlocStateObserver(); // Corrected name
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  initializeDateFormatting('pt_BR', null).then((_) => runApp(MyApp(
-        preferences: preferences,
-      )));
+  await initializeDateFormatting('pt_BR', null);
+
+  runApp(MyApp(preferences: preferences));
 }
 
 class MyApp extends StatelessWidget {
   final SharedPreferences preferences;
 
-  const MyApp({super.key, required this.preferences});
+  const MyApp({Key? key, required this.preferences}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-        create: (context) =>
-            TaskRepository(taskDataProvider: TaskDataProvider(preferences)),
-        child: BlocProvider(
-            create: (context) => TasksBloc(context.read<TaskRepository>()),
-            child: MaterialApp(
-              title: 'IMake - Gerenciador de Tarefas',
-              debugShowCheckedModeBanner: false,
-              initialRoute: Pages.initial,
-              onGenerateRoute: onGenerateRoute,
-              theme: ThemeData(
-                fontFamily: 'Sora',
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                canvasColor: Colors.transparent,
-                colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
-                useMaterial3: true,
-              ),
-            )));
+      create: (context) => TaskRepository(taskDataProvider: TaskDataProvider(preferences)),
+      child: BlocProvider(
+        create: (context) => TasksBloc(context.read<TaskRepository>()),
+        child: MaterialApp(
+          title: 'IMake - Gerenciador de Tarefas',
+          debugShowCheckedModeBanner: false,
+          initialRoute: Pages.initial,
+          onGenerateRoute: onGenerateRoute,
+          theme: ThemeData(
+            fontFamily: 'Sora',
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            canvasColor: Colors.transparent,
+            colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
+            useMaterial3: true,
+          ),
+        ),
+      ),
+    );
   }
 }

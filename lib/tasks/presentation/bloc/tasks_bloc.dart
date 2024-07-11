@@ -1,13 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imake/tasks/presentation/widget/task_item_view.dart';
-
 import '../../data/local/model/task_model.dart';
 import '../../data/repository/task_repository.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
-
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final TaskRepository taskRepository;
@@ -21,7 +18,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<SearchTaskEvent>(_searchTasks);
   }
 
-  _addNewTask(AddNewTaskEvent event, Emitter<TasksState> emit) async {
+  void _addNewTask(AddNewTaskEvent event, Emitter<TasksState> emit) async {
     emit(TasksLoading());
     try {
       if (event.taskModel.title.trim().isEmpty) {
@@ -55,14 +52,13 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     }
   }
 
-  _updateTask(UpdateTaskEvent event, Emitter<TasksState> emit) async {
+  void _updateTask(UpdateTaskEvent event, Emitter<TasksState> emit) async {
     try {
       if (event.taskModel.title.trim().isEmpty) {
         return emit(UpdateTaskFailure(error: 'Título não pode ser vazio'));
       }
       if (event.taskModel.description.trim().isEmpty) {
-        return emit(
-            UpdateTaskFailure(error: 'Descrição não pode ser vazia'));
+        return emit(UpdateTaskFailure(error: 'Descrição não pode ser vazia'));
       }
       if (event.taskModel.startDateTime == null) {
         return emit(UpdateTaskFailure(error: 'Faltou a data de inicio'));
@@ -71,30 +67,32 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         return emit(UpdateTaskFailure(error: 'Faltou a data de fim'));
       }
       emit(TasksLoading());
-      final tasks = await taskRepository.updateTask(event.taskModel);
+      await taskRepository.updateTask(event.taskModel);
       emit(UpdateTaskSuccess());
+      final tasks = await taskRepository.getTasks();
       return emit(FetchTasksSuccess(tasks: tasks));
     } catch (exception) {
       emit(UpdateTaskFailure(error: exception.toString()));
     }
   }
 
-  _deleteTask(DeleteTaskEvent event, Emitter<TasksState> emit) async {
+  void _deleteTask(DeleteTaskEvent event, Emitter<TasksState> emit) async {
     emit(TasksLoading());
     try {
-      final tasks = await taskRepository.deleteTask(event.taskModel);
+      await taskRepository.deleteTask(event.taskModel);
+      final tasks = await taskRepository.getTasks();
       return emit(FetchTasksSuccess(tasks: tasks));
     } catch (exception) {
       emit(LoadTaskFailure(error: exception.toString()));
     }
   }
 
-  _sortTasks(SortTaskEvent event, Emitter<TasksState> emit) async {
+  void _sortTasks(SortTaskEvent event, Emitter<TasksState> emit) async {
     final tasks = await taskRepository.sortTasks(event.sortOption);
     return emit(FetchTasksSuccess(tasks: tasks));
   }
 
-  _searchTasks(SearchTaskEvent event, Emitter<TasksState> emit) async {
+  void _searchTasks(SearchTaskEvent event, Emitter<TasksState> emit) async {
     final tasks = await taskRepository.searchTasks(event.keywords);
     return emit(FetchTasksSuccess(tasks: tasks, isSearching: true));
   }

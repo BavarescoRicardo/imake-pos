@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BlocStateOberver extends BlocObserver{
+class BlocStateObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
     if (kDebugMode) {
-      print(bloc.state);
+      print('onCreate -- ${bloc.runtimeType}');
     }
     super.onCreate(bloc);
   }
@@ -13,7 +13,7 @@ class BlocStateOberver extends BlocObserver{
   @override
   void onEvent(Bloc bloc, Object? event) {
     if (kDebugMode) {
-      print(bloc.state);
+      print('onEvent -- ${bloc.runtimeType}, $event');
     }
     super.onEvent(bloc, event);
   }
@@ -21,7 +21,7 @@ class BlocStateOberver extends BlocObserver{
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     if (kDebugMode) {
-      print(bloc.state);
+      print('onError -- ${bloc.runtimeType}, $error');
     }
     super.onError(bloc, error, stackTrace);
   }
@@ -29,7 +29,7 @@ class BlocStateOberver extends BlocObserver{
   @override
   void onTransition(Bloc bloc, Transition transition) {
     if (kDebugMode) {
-      print(bloc.state);
+      print('onTransition -- ${bloc.runtimeType}, $transition');
     }
     super.onTransition(bloc, transition);
   }
