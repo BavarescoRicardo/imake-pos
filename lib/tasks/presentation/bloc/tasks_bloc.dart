@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imake/tasks/presentation/widget/task_item_view.dart';
 
 import '../../data/local/model/task_model.dart';
 import '../../data/repository/task_repository.dart';
@@ -20,7 +21,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<SearchTaskEvent>(_searchTasks);
   }
 
-  _addNewTask(TasksEvent event, Emitter<TasksState> emit) async {
+  _addNewTask(AddNewTaskEvent event, Emitter<TasksState> emit) async {
     emit(TasksLoading());
     try {
       if (event.taskModel.title.trim().isEmpty) {
