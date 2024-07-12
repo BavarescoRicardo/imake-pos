@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imake/components/custom_app_bar.dart';
+import 'package:imake/routes/pages.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_bloc.dart';
 import 'package:imake/components/build_text_field.dart';
 import 'package:imake/tasks/presentation/widget/task_item_view.dart';
@@ -227,7 +228,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 Icons.add_circle,
                 color: kPrimaryColor,
               ),
-              onPressed: null),
-        )));
+              onPressed: () => Navigator.pushNamed(context, Pages.createNewTask),
+        ))));
   }
 }
