@@ -15,13 +15,13 @@ Route onGenerateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         builder: (context) => const SplashScreen(),
       );
-    case Pages.home:
-      return MaterialPageRoute(
-        builder: (context) => const TasksScreen(),
-      );
     case Pages.login:
       return MaterialPageRoute(
         builder: (context) => const LoginScreen(),
+      );
+    case Pages.home:
+      return MaterialPageRoute(
+        builder: (context) => const TasksScreen(),
       );
     case Pages.createNewTask:
       return MaterialPageRoute(
