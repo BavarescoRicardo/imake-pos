@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imake/routes/pages.dart';
 import 'package:imake/tasks/data/local/model/task_model.dart';
+import 'package:imake/tasks/presentation/pages/about_screen.dart';
 import 'package:imake/tasks/presentation/pages/login_screen.dart';
 import 'package:imake/tasks/presentation/pages/new_task_screen.dart';
 import 'package:imake/tasks/presentation/pages/splash_screen.dart';
@@ -11,13 +12,13 @@ import '../page_not_found.dart';
 
 Route onGenerateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
-    case Pages.login:
-      return MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      );
     case Pages.initial:
       return MaterialPageRoute(
         builder: (context) => const SplashScreen(),
+      );
+    case Pages.login:
+      return MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
       );
     case Pages.home:
       return MaterialPageRoute(
@@ -32,6 +33,10 @@ Route onGenerateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         builder: (context) => UpdateTaskScreen(taskModel: args),
       );
+    case Pages.about:
+      return MaterialPageRoute(
+        builder: (context) => const AboutScreen(),
+      );   
     default:
       return MaterialPageRoute(
         builder: (context) => const PageNotFound(),

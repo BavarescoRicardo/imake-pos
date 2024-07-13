@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:imake/utils/font_sizes.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -23,8 +23,27 @@ class _AboutScreenState extends State<AboutScreen> {
           )
         ],
       ),
-      body: Column(
-        children: [const Text('Roberson Alves')],
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Desenvolvedor',
+              style: TextStyle(
+                fontSize: 24, 
+                fontWeight: FontWeight.bold, 
+              ),
+            ),
+            SizedBox(height: 8), 
+            Text(
+              'Ricardo Bavaresco',
+              style: TextStyle(
+                fontSize: 18, 
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

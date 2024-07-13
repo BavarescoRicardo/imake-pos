@@ -223,12 +223,38 @@ class _TasksScreenState extends State<TasksScreen> {
                     }
                     return Container();
                   }))),
-          floatingActionButton: FloatingActionButton(
-              child: const Icon(
-                Icons.add_circle,
-                color: kPrimaryColor,
+  floatingActionButton: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: FloatingActionButton(
+                      heroTag: "btnNewTask",
+                      child: const Icon(
+                        Icons.add_circle,
+                        color: kPrimaryColor,
+                      ),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, Pages.createNewTask),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 70),
+                      child: FloatingActionButton(
+                        heroTag: "btnSobre",
+                        child: const Icon(
+                          Icons.info,
+                          color: kPrimaryColor,
+                        ),
+                        onPressed: () => Navigator.pushNamed(context, Pages.about),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              onPressed: () => Navigator.pushNamed(context, Pages.createNewTask),
-        ))));
+            ),
+          ),
+        );
   }
 }
