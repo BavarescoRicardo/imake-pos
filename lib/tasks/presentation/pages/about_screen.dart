@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imake/utils/font_sizes.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
