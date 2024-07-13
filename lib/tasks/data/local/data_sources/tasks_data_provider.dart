@@ -59,6 +59,14 @@ class TaskDataProvider {
           }
         });
         break;
+        case 2:
+          // Sort by start date (ascending)
+          tasks.sort((a, b) => a.startDateTime?.compareTo(b.startDateTime ?? DateTime.now()) ?? 0);
+          break;
+        case 3:
+          // Sort by start date (descending)
+          tasks.sort((a, b) => b.startDateTime?.compareTo(a.startDateTime ?? DateTime.now()) ?? 0);
+          break;        
     }
     return tasks;
   }
@@ -119,3 +127,4 @@ class TaskDataProvider {
     }).toList();
   }
 }
+
