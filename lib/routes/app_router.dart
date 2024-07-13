@@ -11,13 +11,13 @@ import '../page_not_found.dart';
 
 Route onGenerateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
-    case Pages.initial:
-      return MaterialPageRoute(
-        builder: (context) => const SplashScreen(),
-      );
     case Pages.login:
       return MaterialPageRoute(
         builder: (context) => const LoginScreen(),
+      );
+    case Pages.initial:
+      return MaterialPageRoute(
+        builder: (context) => const SplashScreen(),
       );
     case Pages.home:
       return MaterialPageRoute(

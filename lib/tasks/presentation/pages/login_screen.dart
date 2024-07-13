@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imake/tasks/presentation/bloc/auth_event.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
@@ -8,7 +9,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -18,9 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login(BuildContext context) {
     final username = _usernameController.text;
     final password = _passwordController.text;
-    // BlocProvider.of<AuthBloc>(context)
-    //     .add(AuthLoginRequested(username, password));
+    BlocProvider.of<AuthBloc>(context)
+        .add(AuthLoginRequested(username, password));
   }
+
+  @override
+  void initState() {
+    super.initState();
+  }  
 
   @override
   Widget build(BuildContext context) {
