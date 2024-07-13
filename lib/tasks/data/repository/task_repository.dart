@@ -29,4 +29,8 @@ class TaskRepository {
   Future<List<TaskModel>> searchTasks(String search) async {
     return await taskDataProvider.searchTasks(search);
   }
+
+  Future<List<TaskModel>> sortTasksbyDate(int sortOption) async {
+    return await taskDataProvider.sortTasksbyDate(sortOption);
+  }
 }

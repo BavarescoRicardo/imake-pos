@@ -14,7 +14,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<FetchTaskEvent>(_fetchTasks);
     on<UpdateTaskEvent>(_updateTask);
     on<DeleteTaskEvent>(_deleteTask);
-    on<SortTaskEvent>(_sortTasks);
+    on<SortTaskEvent>(_sortTasksByDate);
     on<SearchTaskEvent>(_searchTasks);
   }
 
@@ -96,4 +96,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     final tasks = await taskRepository.searchTasks(event.keywords);
     return emit(FetchTasksSuccess(tasks: tasks, isSearching: true));
   }
+
+  void _sortTasksByDate(SortTaskEvent event, Emitter<TasksState> emit) async {
+    final tasks = await taskRepository.sortTasksbyDate(event.sortOption);
+    return emit(FetchTasksSuccess(tasks: tasks));
+  }  
 }

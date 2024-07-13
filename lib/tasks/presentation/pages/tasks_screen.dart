@@ -40,7 +40,7 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Scaffold(
           backgroundColor: kWhiteColor,
           appBar: CustomAppBar(
-            title: '?',
+            title: 'Selecione o tipo de ordenação',
             showBackArrow: false,
             actionWidgets: [
               PopupMenuButton<int>(
@@ -63,11 +63,32 @@ class _TasksScreenState extends State<TasksScreen> {
                             .read<TasksBloc>()
                             .add(SortTaskEvent(sortOption: 2));
                         break;
-                      }
+                      }                                          
                   }
                 },
                 itemBuilder: (BuildContext context) {
                   return [
+                    PopupMenuItem<int>(
+                      value: 0,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/task_checked.svg',
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          buildText(
+                              'Datas mais antigas',
+                              kBlackColor,
+                              textSmall,
+                              FontWeight.normal,
+                              TextAlign.start,
+                              TextOverflow.clip)
+                        ],
+                      ),
+                    ),
                     PopupMenuItem<int>(
                       value: 1,
                       child: Row(
@@ -80,70 +101,7 @@ class _TasksScreenState extends State<TasksScreen> {
                             width: 10,
                           ),
                           buildText(
-                              'Finalizadas',
-                              kBlackColor,
-                              textSmall,
-                              FontWeight.normal,
-                              TextAlign.start,
-                              TextOverflow.clip)
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem<int>(
-                      value: 2,
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/task.svg',
-                            width: 15,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          buildText(
-                              'Pendentes',
-                              kBlackColor,
-                              textSmall,
-                              FontWeight.normal,
-                              TextAlign.start,
-                              TextOverflow.clip)
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem<int>(
-                      value: 3,
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/task_checked.svg',
-                            width: 15,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          buildText(
-                              'Mais recentes',
-                              kBlackColor,
-                              textSmall,
-                              FontWeight.normal,
-                              TextAlign.start,
-                              TextOverflow.clip)
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem<int>(
-                      value: 4,
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/task_checked.svg',
-                            width: 15,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          buildText(
-                              'Mais antigas',
+                              'Datas mais novos',
                               kBlackColor,
                               textSmall,
                               FontWeight.normal,
@@ -156,7 +114,8 @@ class _TasksScreenState extends State<TasksScreen> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
-                  child: SvgPicture.asset('assets/svgs/filter.svg'),
+                  child: SvgPicture.asset('assets/svgs/sort.svg',
+                  width: 20,),
                 ),
               ),
             ],

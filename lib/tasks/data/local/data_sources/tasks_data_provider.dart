@@ -58,18 +58,10 @@ class TaskDataProvider {
             return -1;
           }
         });
-        break;
-        case 2:
-          // Sort by start date (ascending)
-          tasks.sort((a, b) => a.startDateTime?.compareTo(b.startDateTime ?? DateTime.now()) ?? 0);
-          break;
-        case 3:
-          // Sort by start date (descending)
-          tasks.sort((a, b) => b.startDateTime?.compareTo(a.startDateTime ?? DateTime.now()) ?? 0);
-          break;        
+        break;     
     }
     return tasks;
-  }
+  }  
 
   Future<void> createTask(TaskModel taskModel) async {
     try {
@@ -126,5 +118,17 @@ class TaskDataProvider {
       return titleMatches || descriptionMatches;
     }).toList();
   }
+
+  Future<List<TaskModel>> sortTasksbyDate(int sortOption) async {
+    switch (sortOption) {
+        case 1:          
+          tasks.sort((a, b) => a.startDateTime?.compareTo(b.startDateTime ?? DateTime.now()) ?? 0);
+          break;
+        case 2:
+          tasks.sort((a, b) => b.startDateTime?.compareTo(a.startDateTime ?? DateTime.now()) ?? 0);
+          break;        
+    }
+    return tasks;
+  }  
 }
 
