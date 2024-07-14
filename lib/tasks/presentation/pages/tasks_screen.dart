@@ -113,7 +113,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ];
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.only(right: 25),
                   child: SvgPicture.asset('assets/svgs/sort.svg',
                   width: 20,),
                 ),
